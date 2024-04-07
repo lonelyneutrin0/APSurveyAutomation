@@ -373,16 +373,25 @@ question20 = {
     }
   }
 }
-question21 = {
-   "title": "What were those units easy?", 
-   "questionItem": { 
-     "question": { 
-       "required": False, 
-       "textQuestion": { 
-         "paragraph": True
-       }
-     }
-   }
+question21 = { 
+  "title": "Why were those units easy?",
+  "questionItem": { 
+    "question": { 
+      "required": True, 
+      "choiceQuestion": { 
+        "type": "CHECKBOX", 
+        "options": [ 
+          {"value": "Less abstract than others"},
+          {"value": "Comparatively less much content"},
+          {"value": "Setting up the problems was easier"},
+          {"value": "Solving the problems was easier"},
+          {"value": "The other units were just relatively harder"},
+          {"value": "Spent lots of time reviewing"},
+          {"isOther": True}
+        ]
+      }
+    }
+  }
 }
 question22 = { 
   "title": "How did you feel about the pace of the course?", 
@@ -540,7 +549,7 @@ question33 = {
   }
 }
 question34 = { 
-  "title": "How many weeks did you derivative to studying for the AP " + name + " exam with a teacher?", 
+  "title": "How many weeks did you dedicate to studying for the AP " + name + " exam with a teacher?", 
   "questionItem": { 
     "question": { 
       "required": False, 
@@ -552,10 +561,10 @@ question34 = {
 }
 question35 = { 
   "title": "How many weeks did you dedicate to studying for the AP " + name + " exam outside of the classroom?", 
-  "description": "I'm interested in the normal course workload-not the hours you put in nearing exam day.", 
+  "description": "We're interested in the normal course workload--not the hours you put in nearing exam day.", 
   "questionItem": { 
     "question": { 
-      "required": False, 
+      "required": False,  
       "textQuestion": { 
         "paragraph": False
       }
@@ -632,7 +641,7 @@ question40 = {
 }
 question41 = { 
   "title": "Do you have any additional words of wisdom to future students?", 
-  "description": "(Optional). Keep it concise (just one ore two points), and watch your grammar. I select quality responses for the FAQ.", 
+  "description": "(Optional). Keep it concise (just one or two points), and watch your grammar. Quality responses will be selected for the FAQ document.", 
   "questionItem": { 
     "question": { 
       "required": False, 
@@ -1163,7 +1172,7 @@ NEW_QUESTION = {
         "createItem": { 
           "item": { 
             "title": "Thanks for your help!", 
-            "description": "I use data from this survey to help future AP  " + name + " students. Please share this survey with your friends!", 
+            "description": "I use data from this survey to help future AP " + name + " students. Please share this survey with your friends!", 
             "textItem": {}
           }, 
           "location": {"index": 53}
@@ -1197,7 +1206,7 @@ NEW_QUESTION = {
         "createItem": { 
           "item": { 
             "title": "Thanks for your help!", 
-            "description": "I use data from this survey to help future AP  " + name + " students. Please share this survey with your friends!", 
+            "description": "I use data from this survey to help future AP " + name + " students. Please share this survey with your friends!", 
             "textItem": {}
           },
           "location": {"index": 57}
@@ -1240,9 +1249,9 @@ NEW_QUESTION = {
           "updateFormInfo": { 
             "info": { 
               "title": "AP " + name + " Survey",
-              "description": "Thank you for taking the time to complete this survey! This will help lots of future AP students in their academic journey. Although there are a lot of free response questions, most of them are optional. "
+              "description": "Thank you for participating in this survey! This survey is part of a larger initiative called AProject, where we gather responses to frequently asked questions from past AP students and experienced subject helpers. Using this data, we create high-quality FAQ documents containing information on the best resources for a course, its difficulty level, compatibility with other AP courses, and more. This will greatly assist future AP students in their academic journey. Although the survey contains numerous free-response questions, most of them are optional. \n\nThis project is a massive undertaking and we are always looking for more help. For more information on how to apply, check out the TLDR page of our coda.io document [https://coda.io/d/AP-roject-Official-Information-Document_d3ClwsuYb2A/TL-DR-AP-roject-Quick-Summary-and-FAQs_su4i8#_luDJj]. Your help would be extremely beneficial for improving our productivity."
             }, 
-            "updateMask": "title"
+            "updateMask": "title, description"
           }
         }
     ]
@@ -1260,4 +1269,3 @@ question_setting = (
 
 # Prints the result to show the question has been added
 get_result = form_service.forms().get(formId=result["formId"]).execute()
-print(get_result)
