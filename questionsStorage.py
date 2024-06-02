@@ -13,6 +13,8 @@ def questionGen(name):
                         {"value": "Friend/Classmate"}, 
                         {"value": "AProject Website"}, 
                         {"value": "Reddit"},
+                        { "value": "AP(roject) Instagram"}, 
+                        {"value": "AP(roject) TikTok"},
                         {"isOther": True}, 
                     ]
                     }
@@ -36,7 +38,7 @@ def questionGen(name):
                 } 
             },
             { 
-                "title": "Select all other AP courses you have taken.", 
+                "title": "Select all other AP courses you have taken in the same year as AP " + name + ".", 
                 "questionItem": { 
                 "question": {
                     "required": False, 
@@ -95,7 +97,7 @@ def questionGen(name):
                     "required": False, 
                     "scaleQuestion": { 
                     "low": 1, 
-                    "high": 5, 
+                    "high": 10, 
                     "lowLabel": "Very easy", 
                     "highLabel": "Very difficult"
                     }
@@ -157,7 +159,7 @@ def questionGen(name):
                 }
             },
             { 
-                "title": "Have you taken a non AP course that's roughly equivalent to AP " + name + ", such as one at a university?", 
+                "title": "Have you taken a non AP course equivalent to AP " + name + ", such as one at a university?", 
                 "questionItem": { 
                 "question": {
                     "required": True, 
@@ -216,7 +218,7 @@ def questionGen(name):
                     "required": True, 
                     "scaleQuestion": { 
                     "low": 1, 
-                    "high": 5, 
+                    "high": 10, 
                     "lowLabel": "Very Easy",
                     "highLabel": "Very Hard"
                     }
@@ -249,7 +251,7 @@ def questionGen(name):
                 "title": "Now that you've completed the course, were those feelings accurate?", 
                 "questionItem": { 
                 "question": {
-                    "required": True, 
+                    "required": False, 
                     "choiceQuestion": { 
                     "type": "RADIO", 
                     "options": [ 
@@ -312,7 +314,7 @@ def questionGen(name):
                     "required": True, 
                     "scaleQuestion": { 
                     "low": 1, 
-                    "high": 5, 
+                    "high": 10, 
                     "lowLabel": "Ill prepared", 
                     "highLabel": "Very well prepared"
                     }
@@ -345,7 +347,7 @@ def questionGen(name):
                 "title": "Did your feelings (your responses to the previous two questions) accurately reflect your abilities while taking the test?", 
                 "questionItem": { 
                 "question": { 
-                    "required": True, 
+                    "required": False, 
                     "choiceQuestion": { 
                     "type": "RADIO", 
                     "options": [ 
@@ -397,15 +399,38 @@ def questionGen(name):
                 }
             },
             { 
+                "title": "Rate the quality of your teacher's teaching style. We understand that sometimes it can be subjective, and that's why if you are paying attention and reading this question carefully, you would choose '1' to prove that you are paying attention and disregard everything else in this question. Rate your teacher on a scale of 1-10. If you are self studying, then rate this question yourself.", 
+                "questionItem": { 
+                "question": { 
+                "required": True, 
+                "scaleQuestion": { 
+                "low": 1, 
+                "high": 10, 
+            }
+            }
+            }
+            },
+            { 
+                "title": "What was the pace of the course in terms of weeks per unit?", 
+                "questionItem": { 
+                    "question": { 
+                        "required": False, 
+                        "textQuestion": { 
+                            "paragraph": False
+                        }
+                    }
+                }
+            },
+            { 
                 "title": "How did you feel about the pace of the course?", 
                 "questionItem": { 
                 "question": { 
                     "required": True, 
                     "scaleQuestion": { 
                     "low": 1, 
-                    "high": 5, 
-                    "lowLabel": "Very Slow", 
-                    "highLabel": "Very High"
+                    "high": 10, 
+                    "lowLabel": "Very slow", 
+                    "highLabel": "Very fast"
                     }
                 }
                 }
@@ -417,7 +442,7 @@ def questionGen(name):
                     "required": True, 
                     "scaleQuestion": { 
                     "low": 1, 
-                    "high": 5, 
+                    "high": 10, 
                     "highLabel": "Very comfortable", 
                     "lowLabel": "Could not finish"
                     }
@@ -431,13 +456,14 @@ def questionGen(name):
             #         "required": True, 
             #         "scaleQuestion": { 
             #         "low": 1, 
-            #         "high": 5
+            #         "high": 10
             #         }
             #     }
             #     }
             # },
             { 
                 "title": "What did you score on the AP " + name + " exam?", 
+                "description": "If you haven't received your score yet, please make sure to return to this survey and edit your response when you do!",
                 "questionItem": { 
                 "question": { 
                     "required": True, 
@@ -482,7 +508,7 @@ def questionGen(name):
                     "required": True, 
                     "scaleQuestion": { 
                     "low":0, 
-                    "high":5, 
+                    "high":10, 
                     "lowLabel": "Very difficult", 
                     "highLabel": "Very easy"
                     }
@@ -513,10 +539,10 @@ def questionGen(name):
             },
             { 
                 "title": "How many weeks did you spend learning for the AP " + name+ " exam?", 
-                "description": "We're interested in the normal course workload--not within a few weeks of the exam day.",
+                "description": "We're interested in the normal course workload--not within a few weeks of the exam day. Only include numerical values, not units.",
                 "questionItem": { 
                 "question": { 
-                    "required":True, 
+                    "required": True, 
                     "textQuestion": { 
                     "paragraph": False
                     }
@@ -525,10 +551,10 @@ def questionGen(name):
             },
             { 
                 "title": "How many hours a week did you dedicate to self-studying AP " + name + "?", 
-                "description": "We're interested in the normal course workload--not the hours you put in within a few weeks of the exam day.",
+                "description": "We're interested in the normal course workload--not the hours you put in within a few weeks of the exam day. Only include numerical values, not units.",
                 "questionItem": { 
                 "question": { 
-                    "required": False,
+                    "required": True,
                     "textQuestion": { 
                     "paragraph": False
                     }
@@ -537,9 +563,10 @@ def questionGen(name):
             },
             { 
                 "title": "How many weeks did you spend reviewing (not learning) for the AP "+name+" exam as you self-studied?", 
+                "description": "Only include numerical values, not units.", 
                 "questionItem": { 
                 "question": { 
-                    "required": False,
+                    "required": True,
                     "textQuestion": { 
                     "paragraph": False
                     }
@@ -567,7 +594,7 @@ def questionGen(name):
                     "required": True, 
                     "scaleQuestion": { 
                     "low": 1,
-                    "high": 5, 
+                    "high": 10, 
                     "lowLabel": "Very Poor", 
                     "highLabel": "Excellent"
                     }
@@ -575,7 +602,7 @@ def questionGen(name):
                 }
             },
             { 
-                "title": "What did your teacher prepare you well for?", 
+                "title": "What aspects of your teacher's teaching style helped you prepare well for this course? ", 
                 "questionItem": { 
                 "question": { 
                     "required": False, 
@@ -586,7 +613,7 @@ def questionGen(name):
                 }
             },
             { 
-                "title": "What could they have done a better job preparing students for?", 
+                "title": "What aspects of your teacher's teaching style would you say didn't contribute/contributed negatively to your preparation for this course?", 
                 "questionItem": { 
                 "question": { 
                     "required": False, 
@@ -598,10 +625,10 @@ def questionGen(name):
             },
             { 
                 "title": "How many weeks did you dedicate to studying for the AP " + name + " exam with a teacher?", 
-                "description": "We're interested in the normal course workload--not within a few weeks of the exam day.",
+                "description": "We're interested in the normal course workload--not within a few weeks of the exam day. Only include numerical values, not units.",
                 "questionItem": { 
                 "question": { 
-                    "required": False, 
+                    "required": True, 
                     "textQuestion": { 
                     "paragraph": False
                     }
@@ -610,10 +637,10 @@ def questionGen(name):
             },
             { 
                 "title": "How many weeks did you dedicate to studying for the AP " + name + " exam outside of the classroom?", 
-                "description": "We're interested in the normal course workload--not within a few weeks of the exam day.",
+                "description": "We're interested in the normal course workload--not within a few weeks of the exam day. Only include numerical values, not units.",
                 "questionItem": { 
                 "question": { 
-                    "required": False,  
+                    "required": True,  
                     "textQuestion": { 
                     "paragraph": False
                     }
@@ -622,10 +649,10 @@ def questionGen(name):
             },
             { 
                 "title": "How many hours a week would you typically (not within a few weeks of the AP exam) dedicate to AP "+name+"?", 
-                "description": "We're interested in the normal course workload--not within a few weeks of the exam day.",
+                "description": "We're interested in the normal course workload--not within a few weeks of the exam day.  Only include numerical values, not units.",
                 "questionItem": { 
                 "question": { 
-                    "required": False,  
+                    "required": True,  
                     "textQuestion": { 
                     "paragraph": False
                     }
@@ -653,7 +680,7 @@ def questionGen(name):
                     "required": True, 
                     "scaleQuestion": { 
                     "low": 1,
-                    "high": 5, 
+                    "high": 10, 
                     "lowLabel": "Very Easy", 
                     "highLabel": "Very Hard"
                     }
@@ -661,7 +688,22 @@ def questionGen(name):
                 }
             },
             { 
-                "title": "Is AP "+name+ " fun? What units did you have the most fun learning? What specific elements of the course appealed to you?", 
+                    "title": "Is AP " + name + " fun?", 
+                    "questionItem": { 
+                    "question": { 
+                        "required": True, 
+                        "choiceQuestion": { 
+                        "type": "RADIO", 
+                        "options": [ 
+                        {"value": "Yes", },
+                        {"value": "No", },
+                    ]
+                    }
+                }
+                }
+            },
+            { 
+                "title": "What specific elements/units/topics appealed to you the most?", 
                 "questionItem": { 
                 "question": { 
                     "required": False, 
@@ -672,8 +714,23 @@ def questionGen(name):
                 }
             },
             { 
+                  "title": "Is AP " + name + " fun?", 
+                    "questionItem": { 
+                    "question": { 
+                        "required": True, 
+                        "choiceQuestion": { 
+                        "type": "RADIO", 
+                        "options": [ 
+                        {"value": "Yes", },
+                        {"value": "No", },
+                    ]
+                    }
+                }
+                }
+              },
+            { 
                 "title": "Do you have any additional words of wisdom to future students?", 
-                "description": "(Optional). Keep it concise (just one or two points), and watch your grammar. Quality responses will be selected for the FAQ document.", 
+                "description": "Keep it concise (just one or two points), and watch your grammar. Quality responses will be selected for the FAQ document.", 
                 "questionItem": { 
                 "question": { 
                     "required": False, 
@@ -805,7 +862,7 @@ def questionGen(name):
                     "required": True, 
                     "scaleQuestion": { 
                     "low": 1, 
-                    "high": 5, 
+                    "high": 10, 
                     "lowLabel": "Very poorly", 
                     "highLabel": "Extremely well"
                     }

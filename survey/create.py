@@ -3,11 +3,14 @@ from httplib2 import Http
 from oauth2client import client, file, tools
 import random 
 import sys 
+import csv
 sys.path.append('c:\\Users\\hkbel\\Desktop\\APSurveyAutomation')
 import questionsStorage
 SCOPES = ["https://www.googleapis.com/auth/forms.body", "https://www.googleapis.com/auth/documents", "https://www.googleapis.com/auth/drive"]
 DISCOVERY_DOC = "https://forms.googleapis.com/$discovery/rest?version=v1"
-
+result_dict = []
+result_fields = ["name", "formId"]
+filename = 'formIds.csv'
 store = file.Storage("token.json")
 creds = None
 if not creds or creds.invalid:
@@ -36,11 +39,19 @@ def responseBody(obj, list):
         "location": {"index": position(obj, list, questions)}
       }
     }
-while(1 > 0): 
+name = ''
+while(name != "finish"): 
   print("Input a course name!")
   name = input()
+  if(name == 'finish'): continue
   questions = questionsStorage.questionGen(name)
-  
+  for arr in questions:
+    for x in arr: 
+        if("questionItem" not in x): continue
+        y = x["questionItem"]
+        z = y["question"]
+        if("textQuestion" in y["question"] and z["required"] == False): 
+            x["description"] = " (Optional)" if "description" not in x else x["description"] + " (Optional)"
   
   # Request body for creating a form
   NEW_FORM = {
@@ -50,21 +61,6 @@ while(1 > 0):
           "documentTitle": "AP " + name +" Survey",
       }
     }
-  #Attention Question 
-  randomquestion = { 
-    "title": "Could you rate the quality of your teacher in teaching the subject from a scale of 1 to 10? A teacher could be your school teacher or your TA (if applicable). We understand that sometimes it can be subjective, and that's why if you are paying attention and reading this question carefully, you would choose '1' to prove that you are paying attention and disregard everything in this question. If you are self studying, then rate this question yourself. We want to know the range of teaching quality present among our respondents.", 
-    "questionItem": { 
-    "question": { 
-        "required": True, 
-        "scaleQuestion": { 
-        "low": 0, 
-        "high": 10, 
-        }
-    }
-    }
-    }
-  rindex = random.randint(0, len(questions)-1)
-  questions[rindex].insert(random.randint(0, len(questions[rindex])-1), randomquestion)
   #Compiling the final response body
   i = 0
   questionBody = [] 
@@ -221,6 +217,11 @@ while(1 > 0):
   
   # Prints the result to show the question has been added
   get_result = form_service.forms().get(formId=result["formId"]).execute()
+  result_dict.append({"name": name, "formId": result["formId"]})
+  
   print("AP " + name+ " Survey Created!")
- 
+with open(filename, 'w') as csvFile: 
+    writer = csv.DictWriter(csvFile, fieldnames=result_fields)
+    writer.writeheader()
+    writer.writerows(result_dict)
 
