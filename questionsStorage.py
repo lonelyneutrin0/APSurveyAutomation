@@ -210,7 +210,29 @@ def questionGen(name):
             },
         ],
         #Section 6
-        [
+        [   
+            { 
+                "title": "What prerequisites did you have prior to  AP " + name + "?", 
+                "questionItem": { 
+                    "question": { 
+                        "required": False, 
+                        "textQuestion": { 
+                            "paragraph": False
+                        }
+                    }
+                }
+            },
+            { 
+                "title": "What prerequisites would you recommend for  AP " + name + "?", 
+                "questionItem": { 
+                    "question": { 
+                        "required": False, 
+                        "textQuestion": { 
+                            "paragraph": False
+                        }
+                    }
+                }
+            },
             { 
                 "title": "How hard did you expect AP " + name + " to be before taking the class?", 
                 "questionItem": { 
@@ -308,7 +330,7 @@ def questionGen(name):
                 }
             },
             { 
-                "title": "How well prepared did you feel for your exam",
+                "title": "How well prepared did you feel for the AP " + name + " exam?",
                 "questionItem": { 
                 "question": { 
                     "required": True, 
@@ -397,18 +419,6 @@ def questionGen(name):
                     }
                 }
                 }
-            },
-            { 
-                "title": "Rate the quality of your teacher's teaching style. We understand that sometimes it can be subjective, and that's why if you are paying attention and reading this question carefully, you would choose '1' to prove that you are paying attention and disregard everything else in this question. Rate your teacher on a scale of 1-10. If you are self studying, then rate this question yourself.", 
-                "questionItem": { 
-                "question": { 
-                "required": True, 
-                "scaleQuestion": { 
-                "low": 1, 
-                "high": 10, 
-            }
-            }
-            }
             },
             { 
                 "title": "What was the pace of the course in terms of weeks per unit?", 
@@ -847,11 +857,7 @@ def questionGen(name):
                 }
                 }
             },
-            { 
-            "title": "Thanks for your help!", 
-            "description": "The data from this survey will be used to help future AP " + name+ " students. Please share this survey with your friends!", 
-            "textItem": {}
-            }, 
+            
         ],
         [
             #Section 14

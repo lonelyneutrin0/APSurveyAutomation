@@ -1,1 +1,1 @@
-[{"createItem": {"item": {"title": "Is AP Spanish Literature and Culture fun?", "questionItem": {"question": {"required": true, "choiceQuestion": {"type": "RADIO", "options": [{"value": "Yes"}, {"value": "No"}]}}}}, "location": {"index": 53}}}]
+[{"deleteItem": {"location": {"index": 30}}}]

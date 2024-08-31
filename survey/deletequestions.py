@@ -13,7 +13,7 @@ result_dict = []
 result_fields = ["name", "formId"]
 filename = 'formIds.csv'
 store = file.Storage("token.json")
-creds = store.get()
+creds = None
 if not creds or creds.invalid:
   flow = client.flow_from_clientsecrets("credentials.json", SCOPES)
   creds = tools.run_flow(flow, store)
@@ -38,7 +38,7 @@ with open("formIds.csv", 'r') as data:
     questionBody = []
     questionBody.append({
               "deleteItem": { 
-                 "location": {"index": 53}
+                 "location": {"index": 30}
               }
            })
     for line in csv.DictReader(data):
